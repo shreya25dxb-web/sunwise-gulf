@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#F8F8F4" />
+  <meta name="description" content="SunWise Gulf — a sunlight-aware, heat-conscious planner with live Gulf forecasts, vitamin D food logging and sleep tracking." />
+  <title>SunWise Gulf — Smarter days under the sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="SunWise Gulf home">
+        <span class="brand-symbol"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="5.8" fill="#E3A84D"/><path d="M16 2v6M16 24v6M2 16h6M24 16h6M6.1 6.1l4.3 4.3M21.6 21.6l4.3 4.3M25.9 6.1l-4.3 4.3M10.4 21.6l-4.3 4.3" stroke="#E3A84D" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span><strong>sunwise<span class="brand-dot">.</span></strong><small>GULF EDITION</small></span>
+      </a>
+      <div class="nav-label">YOUR SPACE</div>
+      <nav class="side-nav">
+        <a href="#overview" class="nav-link active" data-nav="overview"><span class="nav-icon">◫</span> Overview</a>
+        <a href="#planner" class="nav-link" data-nav="planner"><span class="nav-icon">☼</span> Sun planner</a>
+        <a href="#nutrition" class="nav-link" data-nav="nutrition"><span class="nav-icon">◈</span> Food diary</a>
+        <a href="#sleep" class="nav-link" data-nav="sleep"><span class="nav-icon">☾</span> Sleep tracker</a>
+        <a href="#science" class="nav-link" data-nav="science"><span class="nav-icon">◎</span> The science</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="small-sun">✦</span><strong>A little smarter, every day.</strong><p>Find a comfortable time outdoors. Build routines that last.</p></div>
+        <div class="privacy-line"><span class="green-dot"></span> Your diary stays on this device</div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div class="topbar-left"><span class="breadcrumb">WELLNESS DASHBOARD</span><span class="crumb-dot">/</span><span id="todayLabel" class="top-date">Today</span></div>
+        <div class="topbar-controls">
+          <label class="visually-hidden" for="countrySelect">Country</label>
+          <select id="countrySelect" class="soft-select" aria-label="Select Gulf country"></select>
+          <label class="visually-hidden" for="citySelect">City</label>
+          <select id="citySelect" class="soft-select city-select" aria-label="Select city"></select>
+          <button class="icon-button" id="refreshBtn" type="button" title="Refresh live forecast" aria-label="Refresh live forecast">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.6 9a7 7 0 0112-2L20 12M4 12l2.4 5a7 7 0 0012-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="hero" aria-label="Welcome to SunWise Gulf">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR DAILY DAYLIGHT COMPANION</div>
+          <h1>Make more of<br /><em>your daylight.</em></h1>
+          <p>Build a realistic daylight routine around your sleep schedule, Gulf heat, humidity and UV — with practical food tracking, too.</p>
+          <a class="hero-cta" href="#planner">Explore your sun window <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-graphic" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="sun-disc"><div class="sun-inner"></div></div><div class="floating-tag floating-tag-one">✷ DAYLIGHT</div><div class="floating-tag floating-tag-two">☁ STAY COMFORTABLE</div></div>
+      </section>
+
+      <div class="section-title-row weather-head">
+        <div><div class="mini-kicker">LOCAL FORECAST</div><h2>Your environment, at a glance</h2></div>
+        <div class="live-meta"><span id="dataStatusDot" class="status-dot"></span><span id="dataStatus" aria-live="polite">Connecting to forecast…</span><span class="live-separator">•</span><span id="syncTime">Not synced</span></div>
+      </div>
+      <section class="metrics-grid" aria-label="Weather and daylight metrics">
+        <article class="metric-card"><div class="metric-top"><span class="metric-icon sun-icon">☀</span><span class="metric-label">TODAY'S PEAK UV</span></div><div class="metric-main"><strong id="uvMetric">—</strong><span id="uvUnit" class="metric-unit">UV index</span></div><p id="uvDetail">Waiting for forecast</p></article>
+        <article class="metric-card"><div class="metric-top"><span class="metric-icon droplet-icon">◉</span><span class="metric-label">HUMIDITY NOW</span></div><div class="metric-main"><strong id="humidityMetric">—</strong><span class="metric-unit">%</span></div><p id="humidityDetail">Waiting for forecast</p></article>
+        <article class="metric-card"><div class="metric-top"><span class="metric-icon temp-icon">♨</span><span class="metric-label">FEELS LIKE NOW</span></div><div class="metric-main"><strong id="heatMetric">—</strong><span class="metric-unit">°C</span></div><p id="heatDetail">Waiting for forecast</p></article>
+        <article class="metric-card"><div class="metric-top"><span class="metric-icon clock-icon">◷</span><span class="metric-label">DAYLIGHT HOURS</span></div><div class="metric-main"><strong id="daylightMetric">—</strong><span class="metric-unit">hours</span></div><p id="daylightDetail">Waiting for forecast</p></article>
+      </section>
+
+      <section class="risk-message" id="riskMessage"><span class="risk-mark">i</span><div><strong>Sunlight is not a vitamin D dosage.</strong><p>UV 3 or above calls for sun protection. This planner identifies outdoor conditions, not a medically safe amount of unprotected exposure.</p></div><a href="#science">Why this matters ↗</a></section>
+
+
+      <section class="routine-section" id="routine" aria-label="Your attainable daylight routine">
+        <div class="section-title-row routine-title"><div><div class="mini-kicker">BUILD A ROUTINE THAT LASTS</div><h2>Sleep first. Then catch the daylight. <span class="heading-spark">✳</span></h2><p class="section-description">Your sleep diary tells the planner when you are actually awake, while your chosen wake-up time helps plan future days. We never suggest losing sleep for sun exposure.</p></div></div>
+        <div class="routine-grid">
+          <article class="panel routine-card routine-settings"><div class="routine-icon moon-icon">☾</div><h3>Make room for rest</h3><p>Set a realistic wake-up time. Your sleep goal determines the suggested bedtime, and the sun planner starts <strong>after</strong> you wake.</p>
+            <div class="routine-fields"><label for="plannedWake">Usual wake-up <input id="plannedWake" type="time" value="07:00" /></label><label for="ageGroup">Sleep guidance <select id="ageGroup"><option value="adult">Adult (18+)</option><option value="teen">Teen (13–17)</option></select></label></div>
+            <div class="routine-insight" id="bedtimeAdvice" aria-live="polite">Based on your sleep target, your bedtime suggestion will appear here.</div>
+          </article>
+          <article class="panel routine-card routine-settings"><div class="routine-icon day-icon">☼</div><h3>Keep it achievable</h3><p>A short, protected outdoor break is easier to maintain than chasing peak sunlight. Select a routine that fits your schedule.</p>
+            <div class="routine-fields"><label for="outdoorMinutes">Time per day <select id="outdoorMinutes"><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option></select></label><label for="weeklyGoal">Days each week <select id="weeklyGoal"><option value="2">2 days</option><option value="3">3 days</option><option value="4">4 days</option><option value="5">5 days</option><option value="6">6 days</option><option value="7">7 days</option></select></label></div>
+            <div class="weekly-meter"><div class="weekly-meter-track"><span id="weeklyMeterFill"></span></div><strong id="weeklyProgress">0 of 3 days this week</strong></div>
+            <button id="markOutdoorBtn" type="button" class="secondary-button routine-mark">Mark today's planned break completed ✓</button><p id="outdoorFeedback" class="field-caption" aria-live="polite">Only actual completed breaks count. No automatic activity detection.</p>
+          </article>
+          <article class="panel routine-card proactive-card"><div class="routine-icon spark-icon">✦</div><h3>Your next practical steps</h3><p>Fresh forecasts and your sleep routine guide these suggestions; they are not vitamin D dose predictions.</p>
+            <div id="proactiveSteps" class="proactive-steps" aria-live="polite"><p>Connecting to the forecast to suggest your next protected outdoor break…</p></div><button type="button" class="secondary-button routine-mark" id="calendarBtn" disabled>Save suggested break to calendar ↓</button><p class="calendar-hint">Downloads a calendar event you can import. Your calendar handles reminders.</p>
+          </article>
+        </div>
+        <p class="routine-footnote">An outdoor-time goal is for consistency, movement and daylight awareness — <strong>not</strong> a vitamin D treatment target. At UV 3+, use sun protection. When conditions are unsafe, an indoor activity is a success too; protect your sleep and try another day.</p>
+      </section>
+
+      <section id="planner" class="planner-section">
+        <div class="section-title-row"><div><div class="mini-kicker">DAYLIGHT INTELLIGENCE</div><h2>Find your outdoor window <span class="heading-spark">✳</span></h2><p class="section-description">Balance brighter daylight with less oppressive humidity, heat and UV risk.</p></div></div>
+        <div class="planner-layout">
+          <div class="panel planner-panel">
+            <div class="panel-heading"><div><h3>Your personalised forecast</h3><p>Ranked for comfort and sun protection, not vitamin D production.</p></div><div class="toggle-days" role="group" aria-label="Forecast day"><button class="day-button selected" id="todayBtn" type="button" data-day="0">Today</button><button class="day-button" id="tomorrowBtn" type="button" data-day="1">Tomorrow</button></div></div>
+            <div class="controls-grid">
+              <div class="control"><label for="humidityRange">Max humidity <b id="humidityValue">65%</b></label><input id="humidityRange" type="range" min="35" max="90" value="65" step="5" /><div class="range-hints"><span>Drier</span><span>More humid</span></div></div>
+              <div class="control"><label for="heatRange">Max feels-like <b id="heatValue">35°C</b></label><input id="heatRange" type="range" min="25" max="48" value="35" step="1" /><div class="range-hints"><span>Cooler</span><span>Hotter</span></div></div>
+            </div>
+            <div class="planner-settings"><label class="checkbox-line"><input type="checkbox" id="afterWake" checked /><span>Plan after my logged or usual wake-up time</span></label><span class="settings-note">Daylight hours only · UV 6+ excluded</span></div>
+            <div class="window-title"><span>BEST AVAILABLE TIME SLOTS</span><span class="window-rule">1-hour forecast blocks</span></div>
+            <div id="windowList" class="window-list" aria-live="polite"><div class="skeleton-block">Loading hourly weather…</div></div>
+            <div class="chart-title"><div><h4>Hourly conditions</h4><span>Forecast UV intensity, with heat and humidity below</span></div><div class="chart-legend"><span class="legend-point safe"></span> Lower UV <span class="legend-point alert"></span> Higher UV</div></div>
+            <div id="forecastChart" class="hourly-chart" aria-label="Hourly UV index chart"><div class="empty-forecast">Live chart will appear here.</div></div>
+            <div id="forecastRows" class="forecast-rows" aria-label="Hour-by-hour forecast"></div>
+            <p class="chart-footnote">UV and humidity are different measures. UV indicates skin-damage risk; humidity and feels-like temperature help indicate comfort. Forecasts are approximate.</p>
+          </div>
+          <div class="planner-side">
+            <div class="insight-card panel"><div class="insight-eyebrow">✦ THE SUNWISE INSIGHT</div><h3 id="insightTitle">Your daylight, decoded.</h3><p id="insightText">Select a Gulf city to see updated conditions and how to plan around them.</p><div class="insight-line"></div><div class="insight-stat"><span>Peak humidity during daylight</span><strong id="peakHumidity">—</strong></div><div class="insight-stat"><span>Peak UV expected</span><strong id="peakUvTime">—</strong></div><div class="insight-stat"><span>Local solar time</span><strong id="cityClock">—</strong></div></div>
+            <div class="small-education-card"><div class="education-icon">☀</div><h4>More UV ≠ better wellness</h4><p>Sun protection still matters when UV is moderate. For vitamin D intake, food labels and clinician guidance are more dependable than minutes in the sun.</p><a href="https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/" target="_blank" rel="noopener noreferrer">NIH vitamin D guidance ↗</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wellness-grid" id="nutrition">
+        <div class="nutrition-area panel"><div class="panel-heading"><div><div class="mini-kicker">SMART FOOD DIARY</div><h2>What's on your plate?</h2><p>Track estimated vitamin D from foods, with real reference values.</p></div><span class="tag tag-amber">MEAL LOG</span></div>
+          <div class="nutrition-progress"><div class="donut-visual" id="foodDonut"><div class="donut-inner"><strong id="foodTotal">0</strong><small>IU logged</small></div></div><div class="nutrition-progress-copy"><div class="progress-eyebrow">VITAMIN D IN FOOD TODAY</div><div class="progress-large"><span id="foodPercent">0%</span> <span>of your food-intake reference</span></div><p>Reference: <select id="dailyTarget" aria-label="Daily vitamin D reference"><option value="600">600 IU (ages 1–70)</option><option value="800">800 IU (over 70)</option></select></p><span class="nutri-warning">This compares dietary intake only — not total vitamin D status.</span></div></div>
+          <form id="foodForm" class="food-form"><label for="foodText">Describe what you ate</label><div class="food-input-wrap"><input id="foodText" type="text" autocomplete="off" placeholder="e.g. 2 eggs and 1 cup fortified milk" /><button class="primary-button" type="submit">Analyse & add <span>↗</span></button></div><p class="field-caption">Recognises named foods and quantities. This text parser is rule-based. For photographed food, use the separate AI assistant below.</p><div id="foodFeedback" class="form-feedback" aria-live="polite"></div></form>
+          <div class="photo-ai-card" id="photoAISection">
+            <div class="photo-ai-header"><div><strong>✦ AI meal-photo assistant <span class="ai-optional">OPTIONAL</span></strong><p>Identify foods in a photo, then confirm each serving before it is logged.</p></div><span class="photo-ai-icon">▧</span></div>
+            <label class="photo-consent"><input type="checkbox" id="photoConsent" /><span>I understand that clicking Recognise sends my selected food photo to Google Gemini for identification. I will verify all foods and serving sizes.</span></label><div class="photo-ai-controls"><label class="photo-upload" for="photoInput">Choose a meal photo <span>↑</span></label><input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp" /><button id="photoAnalyseBtn" class="secondary-button" type="button" disabled>Recognise foods</button></div>
+            <div id="photoAIStatus" class="photo-ai-status" aria-live="polite">Checking whether photo AI is configured…</div>
+            <div id="photoPreview" class="photo-preview"></div><div id="photoResults" class="photo-results"></div>
+            <p class="photo-disclaimer">Photos are processed only after your consent and sent to Google Gemini via the website server. AI can misidentify foods; it cannot confirm brand fortification, servings, or vitamin D from an image. Please check labels and portions. Do not upload photos containing people or private information.</p>
+          </div>
+          <div class="quick-add-title">QUICK ADD</div><div id="quickFoods" class="quick-foods"></div>
+          <div class="food-list-heading"><h4>Today's food diary</h4><span id="foodCount">0 entries</span></div><div id="foodList" class="food-list"><p class="empty-list">Your meals will appear here.</p></div>
+          <details class="barcode-details"><summary>Have packaged food? Look up a barcode <span>↗</span></summary><div class="barcode-body"><p>Search Open Food Facts. Vitamin D data may be missing or inaccurate; always check the package label.</p><form id="barcodeForm" class="barcode-form"><input id="barcodeInput" type="text" inputmode="numeric" pattern="[0-9]{8,14}" minlength="8" maxlength="14" placeholder="Enter 8–14 digit barcode" aria-label="Product barcode" required /><button type="submit" class="secondary-button">Find food</button></form><div id="barcodeResult" aria-live="polite"></div></div></details>
+        </div>
+        <div class="sleep-area panel" id="sleep"><div class="panel-heading"><div><div class="mini-kicker">YOUR RHYTHM</div><h2>Sleep, meet daylight.</h2><p>Protect sufficient sleep, then find realistic daylight windows that fit when you wake.</p></div><span class="moon-badge">☾</span></div>
+          <div class="sleep-summary"><div><span class="sleep-summary-label">LAST LOGGED NIGHT</span><strong id="lastSleep">—</strong><span id="lastSleepDetail">No sleep logged yet</span></div><div class="sleep-wave">☾ <span>✦</span></div></div>
+          <form id="sleepForm" class="sleep-form"><label for="sleepDate">Date you woke up</label><input id="sleepDate" type="date" required /><div class="sleep-time-grid"><div><label for="bedtime">Bedtime</label><input id="bedtime" type="time" value="23:00" required /></div><div><label for="wakeTime">Wake-up</label><input id="wakeTime" type="time" value="07:00" required /></div></div><div class="sleep-target"><label for="sleepGoal">Nightly goal</label><select id="sleepGoal"><option value="7">7 hours</option><option value="8" selected>8 hours</option><option value="9">9 hours</option><option value="10">10 hours</option></select></div><button class="primary-button sleep-save" type="submit">Save last night's sleep <span>↗</span></button><div id="sleepFeedback" class="form-feedback" aria-live="polite"></div></form>
+          <div class="sleep-chart-top"><h4>Recent nights</h4><span id="sleepAverage">Average: —</span></div><div id="sleepChart" class="sleep-chart" aria-label="Recent sleep durations"></div><p class="field-caption">Why sleep matters here: we use your <strong>actual wake time</strong> to avoid recommending outdoor slots while you sleep, and your <strong>usual wake + sleep goal</strong> to plan tomorrow without cutting rest. Sleep does not directly measure vitamin D. Manual tracking, stored in this browser only.</p>
+        </div>
+      </section>
+
+      <section class="science-section" id="science"><div class="section-title-row"><div><div class="mini-kicker">BUILT ON SCIENCE, NOT GUESSWORK</div><h2>What SunWise can — and can't — tell you.</h2><p class="section-description">Clear about data quality, safety, and where estimates begin.</p></div><button id="exportBtn" type="button" class="secondary-button export-button">Export my diary ↓</button></div><div class="science-grid"><div class="science-item"><span class="science-number">01</span><h3>Updated local forecasts</h3><p>Weather, apparent temperature, humidity and sunrise/sunset come from Open-Meteo; UV forecasts come from its air-quality forecast service. Values refresh every 15 minutes while open, but forecasts are not sensor readings.</p><a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener noreferrer">Open-Meteo docs ↗</a></div><div class="science-item"><span class="science-number">02</span><h3>Sun protection over sunbathing</h3><p>At UV 3+, use shade, protective clothing and sunscreen. Sunlight through window glass doesn't generate vitamin D in skin, and UV index cannot reliably predict individual vitamin D synthesis.</p><a href="https://www.who.int/news-room/questions-and-answers/item/radiation-the-ultraviolet-%28uv%29-index/" target="_blank" rel="noopener noreferrer">WHO UV guidance ↗</a></div><div class="science-item"><span class="science-number">03</span><h3>Food amounts are estimates</h3><p>Built-in serving values are from the NIH vitamin D fact sheet. Actual amounts depend on brand, fortification, recipes and portion sizes. Barcode data is community-contributed and may omit vitamin D.</p><a href="https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/" target="_blank" rel="noopener noreferrer">NIH food table ↗</a></div></div><div class="data-footnote"><span>✳</span><p><strong>Privacy and limitations:</strong> Sleep and meals are saved to this browser's local storage, not to a server. This prototype does not diagnose deficiency or calculate vitamin D produced by the skin. Photo-food AI is enabled only after deployment with a secure server-side provider key; photo identification and serving sizes need manual verification. Your locally saved diaries do not automatically sync between devices.</p></div></section>
+      <footer class="footer"><span>sunwise<span class="brand-dot">.</span> Gulf · A student-friendly wellness prototype</span><span>Stay curious. Stay sun-smart. ☼ · <a href="privacy.html" style="text-decoration:underline">Privacy</a></span></footer>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
