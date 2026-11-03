@@ -16,7 +16,7 @@ The original visual design is retained and a new **sleep-first daylight routine*
 **You need** a free or paid Netlify account, a GitHub account/repository and a Google AI Studio Gemini API key (subject to provider availability, limits and charges). No key is included in these files. The AI **cannot operate live** until you add your private key to the host.
 
 1. Create an empty GitHub repository. Upload **all contents of this `SunWise_Gulf_Public` folder** to the repository root (i.e., `netlify.toml`, `public/`, `netlify/functions/`, etc.). Do **not** upload your API key or a `.env` file.
-2. At [app.netlify.com](https://app.netlify.com), choose **Add new project → Import an existing project → GitHub** and select the repository. Netlify reads `netlify.toml` automatically. Publish directory is `public`; functions directory is `netlify/functions`; no build command is required. Click **Deploy**.
+2. At [app.netlify.com](https://app.netlify.com), choose **Add new project → Import an existing project → GitHub** and select the repository. Netlify reads `netlify.toml` automatically. Publish directory is `.` (the repository root, where `index.html`, `styles.css`, and `app.js` live); functions directory is `netlify/functions`; no build command is required. Click **Deploy**.
 3. The first deploy produces a public `*.netlify.app` website address that can be shared with anyone. The sunlight, sleep, food text, and weekly-goal features work even if you have no AI key.
 4. Get a key in [Google AI Studio](https://aistudio.google.com/apikey) after reviewing the Gemini API terms, quotas and any applicable billing.
 5. In Netlify, open the project and add an **environment variable** named **`GEMINI_API_KEY`** with your secret key (project environment variables, available to Functions). Optional: `GEMINI_MODEL` (defaults to `gemini-2.5-flash`). **Never** put the key in frontend JavaScript, HTML, `netlify.toml`, source control or the chat.
@@ -30,7 +30,7 @@ The original visual design is retained and a new **sleep-first daylight routine*
 For the **non-AI** website:
 
 ```bash
-cd SunWise_Gulf_Public/public
+cd SunWise_Gulf_Public
 python -m http.server 8000
 ```
 
